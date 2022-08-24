@@ -11,9 +11,11 @@ var Product = require("./models/product");
 var Review = require("./models/review");
 var Order = require("./models/order");
 var User = require("./models/user");
+const session = require("express-session");
+const MemoryStore = require('memorystore')(session)
 var OrderCount = require("./models/orderCount");
 var flash = require("connect-flash");
-
+ 
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -25,6 +27,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(flash());
+
 
 app.use(session({
   cookie: { maxAge: 86400000 },
