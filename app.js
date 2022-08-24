@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
+const session = require("express-session");
 var mongoose = require("mongoose");
 var methodOverride = require("method-override");
 var passport = require("passport");
@@ -25,13 +26,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(flash());
 
-app.use(
-  require("express-session")({
-    secret: "abd",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+app.use(session({
+  cookie: { maxAge: 86400000 },
+  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }),
+  resave: true,
+  secret: "bbq chips",
+  saveUninitialized: false
+}))
 
 app.use(passport.initialize());
 app.use(passport.session());
