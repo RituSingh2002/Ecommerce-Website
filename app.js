@@ -68,7 +68,8 @@ app.use(checkoutRoutes);
 app.use(orderRoutes);
 
 OrderCount.find({}, function (err, orderCountObjects) {
-  if (orderCountObjects.length == 0) {
+  const arr =  orderCountObjects || [];
+  if (arr.length == 0) {
     OrderCount.create({ count: 0 });
   }
 });
