@@ -11,7 +11,7 @@ var Product = require("./models/product");
 var Review = require("./models/review");
 var Order = require("./models/order");
 var User = require("./models/user");
-const session = require("express-session");
+ 
 const MemoryStore = require('memorystore')(session)
 var OrderCount = require("./models/orderCount");
 var flash = require("connect-flash");
