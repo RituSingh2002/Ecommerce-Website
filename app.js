@@ -19,7 +19,7 @@ var flash = require("connect-flash");
 const dotenv = require("dotenv");
 dotenv.config();
 
-var dbURL = "mongodb://localhost:27017/website";
+var dbURL = "mongodb+srv://sona:123@cluster0.zfywyo7.mongodb.net/Ecommerce-store?retryWrites=true&w=majority";
 mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.set("view engine", "ejs");

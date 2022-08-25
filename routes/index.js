@@ -13,6 +13,13 @@ router.get("/register", function (req, res) {
 
 router.post("/register", function (req, res) {
   var newUser = new User({ username: req.body.username });
+  var newPassword = new User({ password: req.body.password });
+  console.log(newPassword.password.length,newPassword.password);
+  if(newPassword.password.length<5){
+    console.log(newPassword.length);
+    req.flash("error","Password Should More Than 5 Character");
+    res.redirect("/register");
+  }
   User.register(newUser, req.body.password, function (err, user) {
     if (err) {
       req.flash("error", err.message);
